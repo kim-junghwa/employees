@@ -10,7 +10,7 @@ import vo.*;
 import model.*;
 import java.util.*;
 
-@WebServlet("/getEmployeesList")
+@WebServlet("/employees/getEmployeesList")
 public class GetEmployeesListServelet extends HttpServlet {
 	private EmployeesDao employeesDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
