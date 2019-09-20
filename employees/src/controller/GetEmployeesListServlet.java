@@ -23,7 +23,7 @@ public class GetEmployeesListServlet extends HttpServlet {
 			limit = Integer.parseInt(request.getParameter("limit"));
 		}
 		//넘어온 값 확인
-		System.out.println("GetEmployeesListServelet param limit : " + limit);
+		//System.out.println("GetEmployeesListServelet param limit : " + limit);
 		
 		//List<Employees>타입의 list를 생성하고 employeesDao.selectEmployeesList(limit)값을 저장한다.
 		List<Employees> list = employeesDao.selectEmployeesList(limit);
