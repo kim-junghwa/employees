@@ -5,39 +5,59 @@
 <head>
 <meta charset="UTF-8">
 <title>employeesList</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+	.center{text-align: center;}
+	.right{text-align: right;}
+</style>
 </head>
-<body>
-	<h1>사원 목록</h1>
+<body class="container">
+	<h1 class="center">사원 목록</h1>
 	<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
-		<select name="limit">
-			<option value="10">10</option>
-			<option value="20">20</option>
-			<option value="30">30</option>
-			<option value="40">40</option>
-			<option value="50">50</option>
-		</select>개 출력
-		<button type="submit">출력</button>
+		<div class="row">
+			<div class="col-sm-9">
+			</div>
+			<div class="col-sm-3">
+				<div class="row">
+					<div class="col-sm-6">
+						<select name="limit" class="custom-select">
+							<option value="10">10</option>
+							<option value="20">20</option>
+							<option value="30">30</option>
+							<option value="40">40</option>
+						</select>
+					</div>
+					<div class="col-sm-4">
+						<button type="submit" class="btn btn-success btn-sm right">확인</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
 	</form>
-	<table>
+	<table class="table table-hover">
 		<thead>
 			<tr>
-				<td>empNo</td>
-				<td>birthDate</td>
-				<td>firstName</td>
-				<td>lastName</td>
-				<td>gender</td>
-				<td>hireDate</td>
+				<td class="center">empNo</td>
+				<td class="center">birthDate</td>
+				<td class="center">firstName</td>
+				<td class="center">lastName</td>
+				<td class="center">gender</td>
+				<td class="center">hireDate</td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="employees" items="${list}">
 				<tr>
-					<td>${employees.empNo}</td>
-					<td>${employees.birthDate}</td>
-					<td>${employees.firstName}</td>
-					<td>${employees.lastName}</td>
-					<td>${employees.gender}</td>
-					<td>${employees.hireDate}</td>
+					<td class="center">${employees.empNo}</td>
+					<td class="center">${employees.birthDate}</td>
+					<td class="center">${employees.firstName}</td>
+					<td class="center">${employees.lastName}</td>
+					<td class="center">${employees.gender}</td>
+					<td class="center">${employees.hireDate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
