@@ -10,16 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/index")
-public class IndexServlet extends HttpServlet {
-	private EmployeesDao employeesDao;
-	
+public class IndexServlet extends HttpServlet {	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("/index RUL 요청");
-		
-		this.employeesDao = new EmployeesDao();
-		int employeesRowCount = employeesDao.selectEmployeesCount();
-		
-		request.setAttribute("employeesRowCount", employeesRowCount);
 		
 		// /WEB-INF/views/index.jsp
 		// request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response); <- 가능
