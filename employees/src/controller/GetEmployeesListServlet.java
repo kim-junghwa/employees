@@ -11,7 +11,7 @@ import model.*;
 import java.util.*;
 
 @WebServlet("/employees/getEmployeesList")
-public class GetEmployeesListServelet extends HttpServlet {
+public class GetEmployeesListServlet extends HttpServlet {
 	private EmployeesDao employeesDao;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//employees 객체 생성
