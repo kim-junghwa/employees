@@ -25,9 +25,13 @@ public class GetEmployeesListServelet extends HttpServlet {
 		//넘어온 값 확인
 		System.out.println("GetEmployeesListServelet param limit : " + limit);
 		
+		//List<Employees>타입의 list를 생성하고 employeesDao.selectEmployeesList(limit)값을 저장한다.
 		List<Employees> list = employeesDao.selectEmployeesList(limit);
 		
-		request.setAttribute("limit", limit);
+		//request에 넘어가는 값중 list의 이름으로 list값 저장
+		request.setAttribute("list", list);
+		
+		//호출
 		request.getRequestDispatcher("/WEB-INF/views/employees/employeesList.jsp").forward(request, response);
 	}
 }
