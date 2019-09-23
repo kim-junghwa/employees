@@ -16,6 +16,9 @@
 </head>
 <body class="container">
 	<h1 class="center">사원 목록</h1>
+	<div>
+		<a href="${pageContext.request.contextPath}/">home</a>
+	</div>
 	<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
 		<div class="row">
 			<div class="col-sm-9">
