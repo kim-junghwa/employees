@@ -21,6 +21,7 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("/index RUL 요청");
 		
+		//dao객체 생성
 		employeesDao = new EmployeesDao();
 		departmentsDao = new DepartmentsDao();
 		deptEmpDao = new DeptEmpDao();
@@ -28,6 +29,7 @@ public class IndexServlet extends HttpServlet {
 		salariesDao = new SalariesDao();
 		titlesDao = new TitlesDao();
 		
+		//각각의 RowCount값 저장
 		int employeesRowCount = employeesDao.selectEmployeesRowCount();
 		int departmentsRowCount = departmentsDao.selectDepartmentsRowCount();
 		int deptEmpRowCount = deptEmpDao.selectDeptEmpRowCount();
@@ -35,7 +37,8 @@ public class IndexServlet extends HttpServlet {
 		int salariesRowCount = salariesDao.selectSalariesRowCount();
 		int titlesRowCount = titlesDao.selectTitlesRowCount();
 		
-		request.setAttribute("employeesRowCoutn", employeesRowCount);
+		//request에 전송될 내용 포함
+		request.setAttribute("employeesRowCount", employeesRowCount);
 		request.setAttribute("departmentsRowCount", departmentsRowCount);
 		request.setAttribute("deptEmpRowCount", deptEmpRowCount);
 		request.setAttribute("deptManagerRowCount", deptManagerRowCount);
