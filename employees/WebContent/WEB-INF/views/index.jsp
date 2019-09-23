@@ -9,55 +9,70 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+	td {
+		text-align : center;
+	}
+	.center {
+		text-align : center;
+	}
+</style>
 </head>
 <body class="container">
-	<h1>Index</h1>
-	
-	<table>
-		<thead>
-			<tr>
-				<td>테이블 명</td>
-				<td>전체 행의 수</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Employees</td>
-				<td>${employeesRowCount}</td>
-			</tr>
-			<tr>
-				<td>Departments</td>
-				<td>${departmentsRowCount}</td>
-			</tr>
-			<tr>
-				<td>DeptEmp</td>
-				<td>${deptEmpRowCount}</td>
-			</tr>
-			<tr>
-				<td>DeptManager</td>
-				<td>${deptManagerRowCount}</td>
-			</tr>
-			<tr>
-				<td>Salaries</td>
-				<td>${salariesRowCount}</td>
-			</tr>
-			<tr>
-				<td>Titles</td>
-				<td>${titlesRowCount}</td>
-			</tr>
-		</tbody>
-	</table>
-	
+	<h1 class="center">Index</h1>
 	<div class="row">
-		<ul class="list-group list-group-flush">
-			<li class="list-group-item"><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
-			<li class="list-group-item"><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록</a></li>
-			<li class="list-group-item">
-				사원목록
-				<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=asc">오름차순</a>
-				<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=desc">내림차순</a>
-			</li>
-		</ul>
+		<div class="col-sm-2"></div>
+		<div class="col-sm-4">
+			<table class="table">
+				<thead>
+					<tr>
+						<td>테이블 명</td>
+						<td>전체 행의 수</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Employees</td>
+						<td>${employeesRowCount}</td>
+					</tr>
+					<tr>
+						<td>Departments</td>
+						<td>${departmentsRowCount}</td>
+					</tr>
+					<tr>
+						<td>DeptEmp</td>
+						<td>${deptEmpRowCount}</td>
+					</tr>
+					<tr>
+						<td>DeptManager</td>
+						<td>${deptManagerRowCount}</td>
+					</tr>
+					<tr>
+						<td>Salaries</td>
+						<td>${salariesRowCount}</td>
+					</tr>
+					<tr>
+						<td>Titles</td>
+						<td>${titlesRowCount}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-sm-4">
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item"><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
+				<li class="list-group-item"><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록</a></li>
+				<li class="list-group-item">
+					사원목록
+					<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=asc">오름차순</a>
+					<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=desc">내림차순</a>
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+	<div class="row">
+		
 	</div>
 </body>
 </html>
