@@ -14,7 +14,7 @@
 </style>
 </head>
 <body class="container">
-	<h1>부서 목록</h1>
+	<h1 class="center">부서 목록</h1>
 	<div>
 		<a href="${pageContext.request.contextPath}/">home</a>
 	</div>
