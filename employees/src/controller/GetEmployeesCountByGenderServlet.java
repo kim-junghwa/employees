@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/employees/getEmployeesCountByGender")
-public class GetEmployeesCountByGender extends HttpServlet {
+public class GetEmployeesCountByGenderServlet extends HttpServlet {
 	private EmployeesDao employeesDao; 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
