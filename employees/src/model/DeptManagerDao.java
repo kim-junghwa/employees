@@ -2,6 +2,8 @@ package model;
 
 import java.sql.*;
 
+import db.DBHelper;
+
 public class DeptManagerDao {
 	public int selectDeptManagerRowCount() {
 		int count = 0;
@@ -18,8 +20,7 @@ public class DeptManagerDao {
 		try {
 			
 			//데이터베이스 연결
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees", "root", "java1234");
+			conn = DBHelper.getConnection();
 			
 			//쿼리문 저장, 실행후 결과값 저장
 			stmt = conn.prepareStatement(sql);
@@ -35,16 +36,7 @@ public class DeptManagerDao {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				//무조건 실행
-				rs.close();
-				stmt.close();
-				conn.close();
-			}
-			catch (Exception e) {
-				//예외 발생시 콜솔창에 출력
-				e.printStackTrace();
-			}
+			DBHelper.close(rs, stmt, conn);
 		}
 		
 		return count;

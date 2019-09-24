@@ -2,6 +2,7 @@ package model;
 import java.util.*;
 import java.sql.*;
 import vo.*;
+import db.*;
 
 public class DepartmentsDao {
 	public List<Departments> selectDepartmentsList() {
@@ -12,8 +13,7 @@ public class DepartmentsDao {
 		String sql = "select dept_no, dept_name from departments";
 		
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees", "root", "java1234");
+			conn = DBHelper.getConnection();
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
@@ -28,14 +28,7 @@ public class DepartmentsDao {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				rs.close();
-				stmt.close();
-				conn.close();
-			}
-			catch (Exception e) {
-				e.printStackTrace();
-			}
+			DBHelper.close(rs, stmt, conn);
 		}
 		
 		return list;
@@ -56,8 +49,7 @@ public class DepartmentsDao {
 		try {
 			
 			//데이터베이스 연결
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/employees", "root", "java1234");
+			conn = DBHelper.getConnection();
 			
 			//쿼리문 저장, 실행후 결과값 저장
 			stmt = conn.prepareStatement(sql);
@@ -73,16 +65,7 @@ public class DepartmentsDao {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				//무조건 실행
-				rs.close();
-				stmt.close();
-				conn.close();
-			}
-			catch (Exception e) {
-				//예외 발생시 콜솔창에 출력
-				e.printStackTrace();
-			}
+			DBHelper.close(rs, stmt, conn);
 		}
 		
 		return count;
