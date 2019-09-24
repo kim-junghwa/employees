@@ -10,35 +10,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
+	table{text-align: center;}
 	.center{text-align: center;}
-	.right{text-align: right;}
 </style>
 </head>
 <body class="container">
-	<h1 class="center">사원 목록</h1>
+	<h1 class="center">사원 목록 between...and...</h1>
 	<div>
 		<a href="${pageContext.request.contextPath}/">home</a>
 	</div>
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<td class="center">empNo</td>
-				<td class="center">birthDate</td>
-				<td class="center">firstName</td>
-				<td class="center">lastName</td>
-				<td class="center">gender</td>
-				<td class="center">hireDate</td>
+				<td>empNo</td>
+				<td>birthDate</td>
+				<td>firstName</td>
+				<td>lastName</td>
+				<td>gender</td>
+				<td>hireDate</td>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach var="employees" items="${list}">
 				<tr>
-					<td class="center">${employees.empNo}</td>
-					<td class="center">${employees.birthDate}</td>
-					<td class="center">${employees.firstName}</td>
-					<td class="center">${employees.lastName}</td>
-					<td class="center">${employees.gender}</td>
-					<td class="center">${employees.hireDate}</td>
+					<td>${employees.empNo}</td>
+					<td>${employees.birthDate}</td>
+					<td>${employees.firstName}</td>
+					<td>${employees.lastName}</td>
+					<td>${employees.gender}</td>
+					<td>${employees.hireDate}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
