@@ -67,6 +67,12 @@
 					<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=asc">오름차순</a>
 					<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=desc">내림차순</a>
 				</li>
+				<li class="list-group-item">
+					<a href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무목록(중복 제거 distinct)</a>
+				</li>
+				<li class="list-group-item">
+					<a href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계값(count, sum, avg, max, min, std)</a>
+				</li>
 			</ul>
 		</div>
 		<div class="col-sm-2"></div>
