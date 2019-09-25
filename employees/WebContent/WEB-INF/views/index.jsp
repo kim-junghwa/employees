@@ -60,8 +60,12 @@
 		</div>
 		<div class="col-sm-4">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item"><a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
-				<li class="list-group-item"><a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록</a></li>
+				<li class="list-group-item">
+					<a href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a>
+				</li>
+				<li class="list-group-item">
+					<a href="${pageContext.request.contextPath}/employees/getEmployeesList">사원 목록</a>
+				</li>
 				<li class="list-group-item">
 					사원목록
 					<a href="${pageContext.request.contextPath}/employees/employeesListOrderBy?order=asc">오름차순</a>
@@ -78,6 +82,9 @@
 				</li>
 				<li class="list-group-item">
 					<a href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">현재 부서별 사원 수</a>
+				</li>
+				<li class="list-group-item">
+					<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원 목록(페이징)</a>
 				</li>
 			</ul>
 			
