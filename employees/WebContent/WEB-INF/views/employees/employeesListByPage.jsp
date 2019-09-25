@@ -8,6 +8,9 @@
 </head>
 <body>
 	<h1>사원목록(페이징)</h1>
+	<div>
+		<a href="${pageContext.request.contextPath}/">home</a>
+	</div>
 	<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesListByPage">
 		<select name="rowPerPage">
 			<option value="10">10</option>
