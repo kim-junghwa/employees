@@ -223,4 +223,61 @@ public class EmployeesDao {
 		
 		return list;
 	}
+	
+	public List<Employees> selectEmployeesListByPage(int currentPage, int rowPerPage) {
+		List<Employees> list = new ArrayList<Employees>();
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT emp_no, birth_date, first_name, last_name, gender, hire_date FROM employees LIMIT ?,?";
+		
+		System.out.println("currentPage : " + currentPage);
+		System.out.println("rowPerPage : " + rowPerPage);
+		
+		try {
+			int startRow = (currentPage - 1) * rowPerPage;
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, startRow);
+			stmt.setInt(2, rowPerPage);
+			rs = stmt.executeQuery();
+			Employees employees = null;
+					
+			while(rs.next()) {
+				employees = new Employees();
+				employees.setEmpNo(rs.getInt("emp_no"));
+				employees.setBirthDate(rs.getString("birth_date"));
+				employees.setFirstName(rs.getString("first_name"));
+				employees.setLastName(rs.getString("last_name"));
+				employees.setGender(rs.getString("gender"));
+				employees.setHireDate(rs.getString("hire_date"));
+				list.add(employees);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			DBHelper.close(rs, stmt, conn);
+		}
+
+		return list;
+	}
+	
+	public int lastPage(int rowPerPage) {
+		int lastPage = 0;
+		int cnt = this.selectEmployeesRowCount();
+		
+		System.out.println(cnt);
+		
+		if (cnt%rowPerPage == 0) {
+			lastPage = cnt/rowPerPage;
+		}
+		else {
+			lastPage = cnt/rowPerPage+1;
+		}
+		
+		return lastPage;
+	}
 }
