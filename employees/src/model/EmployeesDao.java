@@ -280,4 +280,41 @@ public class EmployeesDao {
 		
 		return lastPage;
 	}
+	
+	public String login(Employees employees) {
+		String sessionEmpNo = null;
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT emp_no " + 
+					"FROM employees " + 
+					"WHERE emp_no = ? AND first_name = ? AND last_name=?";
+		
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, employees.getEmpNo());
+			stmt.setString(2, employees.getFirstName());
+			stmt.setString(3, employees.getLastName());
+			rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				sessionEmpNo = rs.getString("emp_no");
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				DBHelper.close(rs, stmt, conn);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return sessionEmpNo;
+	}
 }

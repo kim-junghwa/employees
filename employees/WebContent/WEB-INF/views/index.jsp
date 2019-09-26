@@ -29,7 +29,9 @@
 </head>
 <body class="container">
 	<h1 class="center">Index</h1>
-	
+	<div>
+		<a class="black" href="${pageContext.request.contextPath}/logout">로그아웃</a>
+	</div>
 	<div class="row">
 		<div class="col-sm-3 input-group-prepend">
 			<ul class="a">

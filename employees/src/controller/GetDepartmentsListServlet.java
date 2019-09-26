@@ -9,12 +9,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/departments/getDepartmentsList")
 public class GetDepartmentsListServlet extends HttpServlet {
 	private DepartmentsDao departmentsDao;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("sessionEmpNo") == null) {
+			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+			return;
+		}
 		//departmentsDao 객체 생성
 		departmentsDao = new DepartmentsDao();
 		
