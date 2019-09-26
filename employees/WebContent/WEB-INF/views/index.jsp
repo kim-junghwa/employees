@@ -68,6 +68,9 @@
 					<a class="black" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원 목록(페이징)</a>
 				</li>
 				<li>
+					<a class="black" href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList">부서 사원 조인</a>
+				</li>
+				<li>
 					<form method="post" action="${pageContext.request.contextPath}/employees/getEmployeesListBetween">
 						<input type="number" name="begin" value="${min}" class="form-control form-control">
 						<input type="number" name="end" value="${max}" class="form-control form-control">
