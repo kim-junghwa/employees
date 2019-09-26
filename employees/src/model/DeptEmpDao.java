@@ -3,6 +3,9 @@ package model;
 import java.sql.*;
 import java.util.*;
 import db.*;
+import vo.Departments;
+import vo.DeptEmp;
+import vo.Employees;
 
 public class DeptEmpDao {
 	public int selectDeptEmpRowCount() {
@@ -86,4 +89,68 @@ public class DeptEmpDao {
 
 		return list;
 	}
+	
+	public List<DeptEmp> selectDeptEmpInnerJoinList(int currentPage, int rowPerPage) {
+		List<DeptEmp> list = new ArrayList<DeptEmp>();
+		
+		int beginRow = (currentPage - 1) * rowPerPage;
+		
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT d.dept_no, d.dept_name, e.emp_no, CONCAT(e.first_name, ' ', e.last_name) 'name', de.to_date " + 
+				"FROM dept_emp de INNER JOIN employees e INNER JOIN departments d " + 
+				"ON e.emp_no = de.emp_no AND de.dept_no = d.dept_no " + 
+				"ORDER BY to_date asc " +
+				"LIMIT ?,?";
+		try {
+			conn = DBHelper.getConnection();
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, beginRow);
+			stmt.setInt(2, rowPerPage);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				DeptEmp deptEmp = new DeptEmp();
+				deptEmp.setEmployees(new Employees());
+				deptEmp.setDepartments(new Departments());
+				deptEmp.getEmployees().setEmpNo(rs.getInt("e.emp_no"));
+				deptEmp.getEmployees().setFirstName(rs.getString("name"));
+				deptEmp.getDepartments().setDeptNo(rs.getString("d.dept_no"));
+				deptEmp.getDepartments().setDeptName(rs.getString("d.dept_name"));
+				deptEmp.setToDate(rs.getString("de.to_date"));
+				list.add(deptEmp);
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				DBHelper.close(rs, stmt, conn);
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public int lastPage(int rowPerPage) {
+		int lastPage = 0;
+		int cnt = this.selectDeptEmpRowCount();
+		
+		if (cnt%rowPerPage == 0) {
+			lastPage = cnt/rowPerPage;
+		}
+		else {
+			lastPage = cnt/rowPerPage+1;
+		}
+		
+		//System.out.println("lastPage : " + lastPage);
+		
+		return lastPage;
+	}
+
+	
 }
