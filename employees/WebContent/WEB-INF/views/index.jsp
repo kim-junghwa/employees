@@ -48,7 +48,6 @@
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서 목록</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름 차순(limit 50)</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림 차순(limit 50)</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림 차순(limit 50)</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉 통계</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무 목록(Distinct)</a></li>
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수(group by gender)</a></li>
