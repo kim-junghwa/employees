@@ -27,7 +27,7 @@
 </head>
 <body>
 	<h1 class = "center">EMPLOYEES</h1>
-		
+	<br>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 right">

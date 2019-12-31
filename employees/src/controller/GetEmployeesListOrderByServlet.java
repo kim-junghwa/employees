@@ -12,7 +12,7 @@ import vo.*;
 import java.util.*;
 import model.*;
 
-@WebServlet("/employees/employeesListOrderBy")
+@WebServlet("/employees/getEmployeesListOrderBy")
 public class GetEmployeesListOrderByServlet extends HttpServlet {
 	private EmployeesDao employeesDao ;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,6 +33,7 @@ public class GetEmployeesListOrderByServlet extends HttpServlet {
 		
 		//request에 list값 포함
 		request.setAttribute("list", list);
+		request.setAttribute("order", order);
 		
 		request.getRequestDispatcher("/WEB-INF/views/employees/employeesListOrderBy.jsp").forward(request, response);
 	}

@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,36 +11,96 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
-	table{text-align: center;}
-	.center{text-align: center;}
+.center {
+	text-align: center;
+}
+
+.right {
+	float: right;
+	text-align: right;
+}
+
+.card {
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #E1E1E1;
+}
+
+.copyright{
+	height:50px;
+	color:white;
+	background-color: #353535;
+}
+
+table{
+	text-align: center;
+}
 </style>
 </head>
-<body class="container">
-	<h1 class="center">연봉 통계값(count, sum, avg, max, min, std)</h1>
-	<div>
-		<a href="${pageContext.request.contextPath}/">home</a>
+<body>
+	<h1 class="center">EMPLOYEES</h1>
+	<br>
+	<div class="container">
+		<div class="row">
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesList">사원목록(limit 10)</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서목록</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=asc">오름차순(limit50)</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListOrderBy?order=desc">내림차순(limit50)</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/salaries/getSalariesStatistics">연봉통계</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/titles/getTitlesListDistinct">업무목록(Distinct)</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesCountByGender">사원 수(성별 group by gender)</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서별인원</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원목록(10paging)</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<br><br>
+		<div class="row">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<td>count</td>
+						<td>sum</td>
+						<td>avg</td>
+						<td>max</td>
+						<td>min</td>
+						<td>std</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${map.count}</td>
+						<td>${map.sum}</td>
+						<td>${map.avg}</td>
+						<td>${map.max}</td>
+						<td>${map.min}</td>
+						<td>${map.std}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br><br>
+		<div class="center copyright">copyright</div>
 	</div>
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<td>count</td>
-				<td>sum</td>
-				<td>avg</td>
-				<td>max</td>
-				<td>min</td>
-				<td>std</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>${map.count}</td>
-				<td>${map.sum}</td>
-				<td>${map.avg}</td>
-				<td>${map.max}</td>
-				<td>${map.min}</td>
-				<td>${map.std}</td>
-			</tr>
-		</tbody>
-	</table>
 </body>
 </html>
