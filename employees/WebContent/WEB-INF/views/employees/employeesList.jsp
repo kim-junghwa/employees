@@ -74,8 +74,7 @@
 		<h2>사원목록</h2>
 		<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesList">
 			<div class="row">
-				<div class="col-sm-9">
-				</div>
+				<div class="col-sm-9"></div>
 				<div class="col-sm-3">
 					<div class="row">
 						<div class="col-sm-6">
@@ -91,7 +90,6 @@
 						</div>
 					</div>
 				</div>
-				
 			</div>
 		</form>
 		<table class="table table-hover">

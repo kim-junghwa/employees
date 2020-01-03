@@ -20,12 +20,6 @@
 	text-align: right;
 }
 
-.card {
-	margin-left:auto;
-	margin-right:auto;
-	background-color: #E1E1E1;
-}
-
 .copyright{
 	height:50px;
 	color:white;
@@ -72,57 +66,77 @@
 		</div>
 		<br><br>
 		<h2>사원목록(페이징)</h2>
-		<div class="row">
+		<div>
 			<div>
 				<form method="get" action="${pageContext.request.contextPath}/employees/getEmployeesListByPage">
-					<select name="rowPerPage">
-						<option value="10">10</option>
-						<option value="20">20</option>
-						<option value="30">30</option>
-						<option value="40">40</option>
-						<option value="50">50</option>
-					</select>
-					<button type="submit">개</button>
+					<div class="row">
+						<div class="col-sm-9"></div>
+						<div class="col-sm-3">
+							<div class="row">
+								<div class="col-sm-2"></div>
+								<div class="col-sm-6">
+									<select name="rowPerPage" class="custom-select">
+										<option value="10">10</option>
+										<option value="20">20</option>
+										<option value="30">30</option>
+										<option value="40">40</option>
+										<option value="50">50</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<button type="submit" class="btn btn-success btn-sm right">개</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
 				</form>
 			</div>
 			<div>
-				<table>
+				<table class="table table-hover">
 					<thead>
 						<tr>
-							<td>empNo</td>
-							<td>birthDate</td>
-							<td>firstName</td>
-							<td>lastName</td>
-							<td>gender</td>
-							<td>hireDate</td>
+							<td class="center">empNo</td>
+							<td class="center">birthDate</td>
+							<td class="center">firstName</td>
+							<td class="center">lastName</td>
+							<td class="center">gender</td>
+							<td class="center">hireDate</td>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="employees" items="${list}">
 							<tr>
-								<td>${employees.empNo}</td>
-								<td>${employees.birthDate}</td>
-								<td>${employees.firstName}</td>
-								<td>${employees.lastName}</td>
-								<td>${employees.gender}</td>
-								<td>${employees.hireDate}</td>
+								<td class="center">${employees.empNo}</td>
+								<td class="center">${employees.birthDate}</td>
+								<td class="center">${employees.firstName}</td>
+								<td class="center">${employees.lastName}</td>
+								<td class="center">${employees.gender}</td>
+								<td class="center">${employees.hireDate}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div>
-				<c:if test="${currentPage > 1 }">
-					<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a>
-				</c:if>
+			<div class="auto">
+				<ul class="pagination justify-content-center">
+					<c:if test="${currentPage > 0 }">
+						<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a></li>
+					</c:if>
 				
-				<c:forEach var="i" begin="${currentPage}" end="${currentPage + 10}">
-					<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${i}&rowPerPage=${rowPerPage}">${i}</a>
-				</c:forEach>
+					<c:forEach var="i" begin="${start}" end="${end}">
+						<c:if test="${currentPage == i}">
+							<li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${i}&rowPerPage=${rowPerPage}">${i}</a></li>
+						</c:if>
+						<c:if test="${currentPage != i}">
+							<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${i}&rowPerPage=${rowPerPage}">${i}</a></li>
+						</c:if>
+					</c:forEach>
 				
-				<c:if test="${currentPage < lastPage }">
-					<a href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a>
-				</c:if>
+					<c:if test="${currentPage < lastPage }">
+						<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a></li>
+					</c:if>
+				</ul>
 			</div>
 		</div>
 		<br><br>

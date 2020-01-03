@@ -232,8 +232,8 @@ public class EmployeesDao {
 		ResultSet rs = null;
 		String sql = "SELECT emp_no, birth_date, first_name, last_name, gender, hire_date FROM employees LIMIT ?,?";
 		
-		System.out.println("currentPage : " + currentPage);
-		System.out.println("rowPerPage : " + rowPerPage);
+		//system.out.println("currentPage : " + currentPage);
+		//system.out.println("rowPerPage : " + rowPerPage);
 		
 		try {
 			int startRow = (currentPage - 1) * rowPerPage;
@@ -269,7 +269,7 @@ public class EmployeesDao {
 		int lastPage = 0;
 		int cnt = this.selectEmployeesRowCount();
 		
-		System.out.println(cnt);
+		//system.out.println(cnt);
 		
 		if (cnt%rowPerPage == 0) {
 			lastPage = cnt/rowPerPage;

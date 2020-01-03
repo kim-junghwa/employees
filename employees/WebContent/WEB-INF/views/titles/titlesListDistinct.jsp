@@ -75,6 +75,7 @@ table{
 			</nav>
 		</div>
 		<br><br>
+		<h2>업무목록</h2>
 		<div class="row">
 			<div class="col-sm-3">
 				<ol class="list-group list-group-flush">

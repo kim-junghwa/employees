@@ -75,6 +75,7 @@ table{
 			</nav>
 		</div>
 		<br><br>
+		<h2>연봉 통계</h2>
 		<div class="row">
 			<table class="table table-hover">
 				<thead>
