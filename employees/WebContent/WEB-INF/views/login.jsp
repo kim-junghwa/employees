@@ -77,13 +77,13 @@
 					<h2 class="center">로그인</h2>
 					<form method="post" action="${pageContext.request.contextPath }/login">
 						<div>
-							first_name <input type="text" name="firstName" class="form-control">
+							first_name <input type="text" name="firstName" class="form-control" value="Georgi">
 						</div>
 						<div>
-							last_name <input type="text" name="lastName" class="form-control">
+							last_name <input type="text" name="lastName" class="form-control" value="Facello">
 						</div>
 						<div>
-							emp_no <input type="text" name="empNo" class="form-control"><br>
+							emp_no <input type="text" name="empNo" class="form-control" value="10001"><br>
 						</div>
 						<div class="center">
 							<button type="submit" class="btn btn-success">로그인</button>
