@@ -36,7 +36,16 @@ public class GetDeptEmpInnerJoinListServlet extends HttpServlet {
 		
 		list = deptEmpDao.selectDeptEmpInnerJoinList(currentPage, rowPerPage);
 		int lastPage = deptEmpDao.lastPage(rowPerPage);
+		int start = currentPage/10*10;
+		int end = currentPage/10*10+9;
+		if(start == 0) {
+			start = 1;
+		}
+		//System.out.println("start : "+ start);
+		//System.out.println("end : "+ end);
 		
+		request.setAttribute("start", start);
+		request.setAttribute("end", end);
 		
 		request.setAttribute("rowPerPage", rowPerPage);
 		request.setAttribute("lastPage", lastPage);

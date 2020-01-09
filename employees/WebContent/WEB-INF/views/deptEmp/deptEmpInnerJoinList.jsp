@@ -20,28 +20,53 @@
 	text-align: right;
 }
 
-.card {
-	margin-left:auto;
-	margin-right:auto;
-	background-color: #E1E1E1;
-}
-
-.copyright{
-	height:50px;
+.footer{
+	height:140px;
 	color:white;
 	background-color: #353535;
+	text-align: center;
+	padding-top: 50px;
+}
+
+ul {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h1{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+h2{
+	margin-top: 50px;
+	margin-bottom: 20px;
+}
+
+#home{
+	color: black;
+	text-decoration: none;
+}
+#logout{
+	color: black;
+	text-decoration: none;
 }
 </style>
 </head>
 <body>
-	<h1 class="center">EMPLOYEES</h1>
+	<h1 class="center"><a id="home" href="${pageContext.request.contextPath}/index">EMPLOYEES</a></h1>
 	<br>
-	<div class="container">
-		<div class="row">
+	<div class="row">
+		<div class="col-sm-12 right">
+			<a id="logout" href="${pageContext.request.contextPath}/logout">로그아웃</a>  <!-- LogoutServlet -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
 			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 				<ul class="navbar-nav">
 					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesList">사원목록(limit 10)</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList">사원정보목록</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsList">부서목록</a>
@@ -65,62 +90,87 @@
 						<a class="nav-link" href="${pageContext.request.contextPath}/departments/getDepartmentsCountByDeptNo">부서별인원</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원목록(10paging)</a>
+						<a class="nav-link" href="${pageContext.request.contextPath}/employees/getEmployeesListByPage">사원목록</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 		<br><br>
-		<div class="row">
-		<h2>뭐지?</h2>
+	</div>
+	<div class="container">
+		<h2>사원 정보 목록</h2>
+		<div>
+			<form method="get" action="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList">
+				<div class="row">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-3">
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-6">
+								<select name="rowPerPage" class="custom-select">
+									<option value="10">10</option>
+									<option value="20">20</option>
+									<option value="30">30</option>
+									<option value="40">40</option>
+									<option value="50">50</option>
+								</select>
+							</div>
+							<div class="col-sm-2">
+								<button type="submit" class="btn btn-success btn-sm right">개</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+			</form>
 			<div>
-				<form method="get" action="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList">
-					<select name="rowPerPage">
-						<option value="10">10</option>
-						<option value="20">20</option>
-						<option value="30">30</option>
-						<option value="40">40</option>
-						<option value="50">50</option>
-					</select>
-					<button type="submit">개씩 보기</button>
-				</form>
-			</div>
-			<table border="1">
-				<thead>
-					<tr>
-						<td>dept_no</td>
-						<td>dept_name</td>
-						<td>emp_no</td>
-						<td>name</td>
-						<td>to_date</td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="deptEmp" items="${list}">
+				<table class="table table-hover">
+					<thead>
 						<tr>
-							<td>${deptEmp.departments.deptNo}</td>
-							<td>${deptEmp.departments.deptName}</td>
-							<td>${deptEmp.employees.empNo}</td>
-							<td>${deptEmp.employees.firstName}</td>
-							<td>${deptEmp.toDate}</td>
+							<td>dept_no</td>
+							<td>dept_name</td>
+							<td>emp_no</td>
+							<td>name</td>
+							<td>to_date</td>
 						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="deptEmp" items="${list}">
+							<tr>
+								<td>${deptEmp.departments.deptNo}</td>
+								<td>${deptEmp.departments.deptName}</td>
+								<td>${deptEmp.employees.empNo}</td>
+								<td>${deptEmp.employees.firstName}</td>
+								<td>${deptEmp.toDate}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<div>
+				<br>
+				<ul class="pagination justify-content-center">
+					<c:if test="${currentPage > 0 }">
+						<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a></li>
+					</c:if>
+				
+					<c:forEach var="i" begin="${start}" end="${end}">
+						<c:if test="${currentPage == i}">
+							<li class="page-item active"><a class="page-link" href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${i}&rowPerPage=${rowPerPage}">${i}</a></li>
+						</c:if>
+						<c:if test="${currentPage != i}">
+							<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${i}&rowPerPage=${rowPerPage}">${i}</a></li>
+						</c:if>
 					</c:forEach>
-				</tbody>
-			</table>
-			<c:if test="${currentPage > 1}">
-				<a href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${currentPage-1}&rowPerPage=${rowPerPage}">이전</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${currentPage}" end="${currentPage + 10}">
-				<a href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${i}&rowPerPage=${rowPerPage}">${i}</a>
-			</c:forEach>
-			
-			<c:if test="${currentPage < lastPage}">
-				<a href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a>
-			</c:if>
+				
+					<c:if test="${currentPage < lastPage }">
+						<li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/deptEmp/getDeptEmpInnerJoinList?currentPage=${currentPage+1}&rowPerPage=${rowPerPage}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</div>
 		<br><br>
-		<div class="center copyright">copyright</div>
 	</div>
+	<div class="footer">copyright</div>
 </body>
 </html>

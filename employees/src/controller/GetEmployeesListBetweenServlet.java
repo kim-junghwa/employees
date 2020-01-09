@@ -27,6 +27,8 @@ public class GetEmployeesListBetweenServlet extends HttpServlet {
 		
 		List<Employees> list = employeesDao.selectEmployeesListBetween(begin, end);
 		
+		request.setAttribute("begin", begin);
+		request.setAttribute("end", end);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/views/employees/employeesListBetween.jsp").forward(request, response);
 	}
